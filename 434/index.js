@@ -164,10 +164,12 @@ function run() {
 		let result = find(test.target, test.tree)
 
 		// verify the result is what is expected
+		let didFail = false
 		let resultMsg = "TEST: "
 		if (result.ceiling === test.expect.ceiling && result.floor === test.expect.floor) {
 			resultMsg += "PASS"
 		} else {
+			didFail = true
 			resultMsg += "FAIL"
 		}
 
@@ -175,6 +177,10 @@ function run() {
 		console.log(resultMsg)
 		console.log("test: " + JSON.stringify(test, null, "  "))
 		console.log("result: " + JSON.stringify(result, null, "  "))
+
+		if (didFail) {
+			require("process").exit(1)
+		}
 	}
 }
 

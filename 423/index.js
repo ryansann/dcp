@@ -86,6 +86,10 @@ function run() {
 		console.log(test)
 		console.log("result:")
 		console.log(c)
+
+		if (didFail) {
+			require("process").exit(1)
+		}
 	}
 }
 

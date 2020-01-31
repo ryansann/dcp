@@ -103,16 +103,22 @@ function run() {
 	for (test of tests) {
 		let result = minSumLevel(test.tree)
 		
+		let didFail = false
 		var resultMsg = "TEST: "
 		if (result === test.expect) {
 			resultMsg += "PASS"
 		} else {
 			resultMsg += "FAIL"
+			didFail = true
 		}
 
 		console.log(resultMsg)
 		console.log("test: " + JSON.stringify(test, null, "  "))
 		console.log("result: " + result)
+	
+		if (didFail) {
+			require("process").exit(1)
+		}
 	}
 }
 
