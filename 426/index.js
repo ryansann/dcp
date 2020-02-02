@@ -1,63 +1,67 @@
 // test cases
 let tests = [
 	{
-		tree: {
-			value: 1,
-			left: {
-				value: 3
-			},
-			right: {
-				value: -3
+		args: [
+			{
+				value: 1,
+				left: {
+					value: 3
+				},
+				right: {
+					value: -3
+				}
 			}
-		},
+		],
 		expect: 1
 	},
 	{
-		tree: {
-			value: 1,
-			left: {
-				value: 3,
+		args: [
+			{
+				value: 1,
 				left: {
-					value: 1,
+					value: 3,
 					left: {
-						value: 2
+						value: 1,
+						left: {
+							value: 2
+						},
+						right: {
+							value: 2
+						}
 					},
 					right: {
-						value: 2
+						value: 2,
+						left: {
+							value: 2
+						},
+						right: {
+							value: 2
+						}
 					}
 				},
 				right: {
-					value: 2,
-					left: {
-						value: 2
-					},
-					right: {
-						value: 2
-					}
-				}
-			},
-			right: {
-				value: -3,
-				left: {
 					value: -3,
 					left: {
-						value: -4
+						value: -3,
+						left: {
+							value: -4
+						},
+						right: {
+							value: -4
+						}
 					},
 					right: {
-						value: -4
-					}
-				},
-				right: {
-					value: -1,
-					left: {
-						value: -2
-					},
-					right: {
-						value: -2
+						value: -1,
+						left: {
+							value: -2
+						},
+						right: {
+							value: -2
+						}
 					}
 				}
 			}
-		},
+		],
 		expect: 3
 	}
 	// add more
@@ -99,27 +103,6 @@ function minSumLevel(tree = {}) {
 	return minLevel
 }
 
-function run() {
-	for (test of tests) {
-		let result = minSumLevel(test.tree)
-		
-		let didFail = false
-		var resultMsg = "TEST: "
-		if (result === test.expect) {
-			resultMsg += "PASS"
-		} else {
-			resultMsg += "FAIL"
-			didFail = true
-		}
-
-		console.log(resultMsg)
-		console.log("test: " + JSON.stringify(test, null, "  "))
-		console.log("result: " + result)
-	
-		if (didFail) {
-			require("process").exit(1)
-		}
-	}
-}
-
-run()
+const Runner = new require("../runner")
+let r = new Runner("Binary Tree Min Sum Level")
+r.run(minSumLevel, tests)

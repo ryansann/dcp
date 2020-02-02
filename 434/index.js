@@ -1,115 +1,130 @@
 // test cases
 let tests = [ 
 	{
-		target: 5,
+		args: [
+			undefined,
+			5
+		],
 		expect: {
 			floor: null, 
 			ceiling: null
 		}
 	},
 	{
-		tree: {
-			value: 5,
-			left: {
-				value: 3
-			},
-			right: {
-				value: 7
-			}
-		},
-		target: 2,
-		expect: {
-			floor: null, 
-			ceiling: 7
-		}
-	},
-	{
-		tree: {
-			value: 5,
-			left: {
-				value: 3
-			},
-			right: {
-				value: 7
-			}
-		},
-		target: 8,
-		expect: {
-			floor: 3, 
-			ceiling: null
-		}
-	},
-	{
-		tree: {
-			value: 5,
-			left: {
-				value: 3
-			},
-			right: {
-				value: 7
-			}
-		},
-		target: 5,
-		expect: {
-			floor: 3, 
-			ceiling: 7
-		}
-	},
-	{
-		tree: {
-			value: 5,
-			left: {
-				value: 4
-			},
-			right: {
-				value: 7
-			}
-		},
-		target: 4,
-		expect: {
-			floor: 4, 
-			ceiling: 7
-		}
-	},
-	{
-		tree: {
-			value: 5,
-			left: {
-				value: 4
-			},
-			right: {
-				value: 7
-			}
-		},
-		target: 7,
-		expect: {
-			floor: 4, 
-			ceiling: 7
-		}
-	},
-	{
-		tree: {
-			value: 5,
-			left: {
-				value: 3,
+		args: [
+			{
+				value: 5,
 				left: {
-					value: 1
+					value: 3
 				},
 				right: {
+					value: 7
+				}
+			},
+			2
+		],
+		expect: {
+			floor: null, 
+			ceiling: 7
+		}
+	},
+	{
+		args: [
+			{
+				value: 5,
+				left: {
+					value: 3
+				},
+				right: {
+					value: 7
+				}
+			}, 
+			8
+		],
+		expect: {
+			floor: 3, 
+			ceiling: null
+		}
+	},
+	{
+		args: [
+			{
+				value: 5,
+				left: {
+					value: 3
+				},
+				right: {
+					value: 7
+				}
+			},
+			5
+		],
+		expect: {
+			floor: 3, 
+			ceiling: 7
+		}
+	},
+	{
+		args: [
+			{
+				value: 5,
+				left: {
 					value: 4
-				}
-			},
-			right: {
-				value: 7,
-				left: {
-					value: 6
 				},
 				right: {
-					value: 9
+					value: 7
 				}
-			}
-		},
-		target: 7,
+			},
+			4
+		],
+		expect: {
+			floor: 4, 
+			ceiling: 7
+		}
+	},
+	{
+		args: [
+			{
+				value: 5,
+				left: {
+					value: 4
+				},
+				right: {
+					value: 7
+				}
+			},
+			7
+		],
+		expect: {
+			floor: 4, 
+			ceiling: 7
+		}
+	},
+	{
+		args: [
+			{
+				value: 5,
+				left: {
+					value: 3,
+					left: {
+						value: 1
+					},
+					right: {
+						value: 4
+					}
+				},
+				right: {
+					value: 7,
+					left: {
+						value: 6
+					},
+					right: {
+						value: 9
+					}
+				}
+			},
+			7
+		],
 		expect: {
 			floor: 1, 
 			ceiling: 9
@@ -118,7 +133,7 @@ let tests = [
 ]
 
 // find returns an object with the floor and ceiling for target in tree.
-function find(target = 0, tree = { }) {
+function find(tree = { }, target = 0) {
 	return { floor: findFloor(target, tree), ceiling: findCeiling(target, tree) }
 }
 
@@ -156,32 +171,6 @@ function findCeiling(target, tree) {
 	}
 }
 
-// run runs the tests against find
-function run() {
-	// run function against each test
-	for (let test of tests) {
-		// find the floor and ceiling
-		let result = find(test.target, test.tree)
-
-		// verify the result is what is expected
-		let didFail = false
-		let resultMsg = "TEST: "
-		if (result.ceiling === test.expect.ceiling && result.floor === test.expect.floor) {
-			resultMsg += "PASS"
-		} else {
-			didFail = true
-			resultMsg += "FAIL"
-		}
-
-		// log the test result
-		console.log(resultMsg)
-		console.log("test: " + JSON.stringify(test, null, "  "))
-		console.log("result: " + JSON.stringify(result, null, "  "))
-
-		if (didFail) {
-			require("process").exit(1)
-		}
-	}
-}
-
-run()
+const Runner = new require("../runner")
+let r = new Runner("BST Floor & Ceiling")
+r.run(find, tests)

@@ -1,23 +1,18 @@
 // test cases
 let tests = [
 	{
-		args: {
-			s: "figehaeci",
-			set: {
+		args: [
+			"figehaeci",
+			{
 				"a": true,
 				"e": true,
 				"i": true
 			}
-		},
+		],
 		expect: "aeci"
 	},
 	{
-		args: {
-			s: "abc",
-			set: {
-				"l": true
-			}
-		},
+		args: [ "abc", { "l": true } ],
 		expect: null
 	}
 ]
@@ -64,23 +59,6 @@ function shortestSubstring(s = "", set = {}) {
 	return null
 }
 
-// run test cases against shortestSubstring function
-function run() {
-	for (let test of tests) {
-		let result = shortestSubstring(test.args.s, test.args.set)
-
-		let resultMsg = "TEST: "
-		if (result !== test.expect) {
-			resultMsg += "FAIL"
-		} else {
-			resultMsg += "PASS"
-		}
-
-		console.log(resultMsg)
-		console.log("test: ")
-		console.log(test)
-		console.log("result: " + result)
-	}
-}
-
-run()
+const Runner = new require("../runner")
+let r = new Runner("Shortest Substring")
+r.run(shortestSubstring, tests)
