@@ -65,8 +65,10 @@ function run() {
 		let resultMsg = "TEST: "
 		for (i in test.expect) {
 			for (j in test.expect[i]) {
-				if (c[i][j] !== test.expect[i][j]) {
-					resultMsg += "FAIL - result[" + i + "][" + j + "] -> " + c[i][j] + " != expect[" + i + "][" + j + "] -> " + test.expect[i][j] 
+				let actual = c[i][j]
+				let expected = test.expect[i][j]
+				if (actual !== expected) {
+					resultMsg += "FAIL - result[" + i + "][" + j + "] -> " + actual + " != expect[" + i + "][" + j + "] -> " + expected 
 					didFail = true
 					break
 				}
