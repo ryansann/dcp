@@ -1,3 +1,5 @@
+const util = require('util')
+
 // terminal color constants
 var fgBlue = "\x1b[1;34m"
 var fgRed = "\x1b[1;31m"
@@ -23,34 +25,35 @@ class TestRunner {
 		this.name += "Tests"
 	}
 
+	// run executes f against each test case and pretty prints the results
 	run(f, tests = []) {
+		// test output
 		console.log(fgBlue + this.name + fgReturn)
 		console.group()
 		
-		for (let i in tests) {
-			let test = tests[i]
-
+		tests.forEach((test, i) => {
 			let result = f(...test.args)
 
-			let resultMsg = "TEST " + i + ": "
+			let resultMsg = "TEST " + (i + 1) + ": "
 			if (!deepEqual(result, test.expect)) {
 				resultMsg += (fgRed + "FAIL" + fgReturn)
 			} else {
 				resultMsg += (fgGreen + "PASS" + fgReturn)
 			}
 
+			// test case output
 			console.log(resultMsg)
 			console.group()
 			console.log("test: ")
 			console.group()
-			console.log(test)
+			console.log(util.inspect(test, {showHidden: false, depth: null}))
 			console.groupEnd()
 			console.log("result: ")
 			console.group()
-			console.log(result)
+			console.log(util.inspect(result, {showHidden: false, depth: null}))
 			console.groupEnd()
 			console.groupEnd()
-		}
+		})
 
 		console.groupEnd()
 	}
@@ -74,15 +77,15 @@ function deepEqual(obj1, obj2) {
 	// compare objects with same number of keys
 	for(let key in obj1) {
 		if (!(key in obj2)) return false; // other object doesn't have this prop
-		if (!deepEqual(obj1[key], obj2[key])) return false;
+		if (!deepEqual(obj1[key], obj2[key])) return false
 	}
 
-	return true;
+	return true
 }
 
 // check if value is primitive
 function isPrimitive(obj) {
-	return (obj !== Object(obj));
+	return (obj !== Object(obj))
 }
 
 module.exports = TestRunner
