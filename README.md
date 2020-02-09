@@ -4,13 +4,13 @@
 
 ### Easy
 
-- [Transitive Closure](423/README.md)
-- [Binary Tree Min Level Sum](426/README.md)
-- [BST Floor & Ceiling](434/README.md)
+- [Transitive Closure](423)
+- [Binary Tree Min Level Sum](426)
+- [BST Floor & Ceiling](434)
 
 ### Medium
 
-- [Shortest Substring in Set](437/README.md)
+- [Shortest Substring in Set](437)
 - [Power of 4](446)
 
 ## Requirements
