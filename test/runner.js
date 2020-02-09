@@ -1,10 +1,10 @@
 const util = require('util')
 
 // terminal color constants
-var fgBlue = "\x1b[1;34m"
-var fgRed = "\x1b[1;31m"
-var fgGreen = "\x1b[32m"
-var fgReturn = "\x1b[0m"
+const fgBlue = "\x1b[1;34m"
+const fgRed = "\x1b[1;31m"
+const fgGreen = "\x1b[32m"
+const fgReturn = "\x1b[0m"
 
 // functional test runner
 // tests should be of the form: 

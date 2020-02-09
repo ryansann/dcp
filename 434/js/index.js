@@ -171,6 +171,6 @@ function findCeiling(target, tree) {
 	}
 }
 
-const Runner = new require("../runner")
+const Runner = new require("../../test/runner")
 let r = new Runner("BST Floor & Ceiling")
 r.run(find, tests)

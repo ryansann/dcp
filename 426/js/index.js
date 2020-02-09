@@ -103,6 +103,6 @@ function minSumLevel(tree = {}) {
 	return minLevel
 }
 
-const Runner = new require("../runner")
+const Runner = new require("../../test/runner")
 let r = new Runner("Binary Tree Min Sum Level")
 r.run(minSumLevel, tests)

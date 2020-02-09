@@ -59,6 +59,6 @@ function shortestSubstring(s = "", set = {}) {
 	return null
 }
 
-const Runner = new require("../runner")
+const Runner = new require("../../test/runner")
 let r = new Runner("Shortest Substring")
 r.run(shortestSubstring, tests)

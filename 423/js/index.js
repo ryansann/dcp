@@ -50,6 +50,6 @@ function dfs(g, v, visited = []) {
 	return visited
 }
 
-const Runner = new require("../runner")
+const Runner = new require("../../test/runner")
 let r = new Runner("Graph Transitive Closure")
 r.run(transitiveClosure, tests)
