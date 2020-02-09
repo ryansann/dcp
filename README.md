@@ -11,7 +11,7 @@
 ### Medium
 
 - [Shortest Substring in Set](437/README.md)
-- [Power of 4](#/446)
+- [Power of 4](446)
 
 ## Requirements
 
