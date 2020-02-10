@@ -42,10 +42,10 @@ func TestMatch(t *testing.T) {
 			nPos, iterations := match(test.n, test.k)
 			t.Logf("nPos: %v, iterations: %v", nPos, iterations)
 			if nPos != test.expect {
-				t.Fatalf("expected: %v, got: %v", test.expect, nPos)
+				t.Errorf("expected: %v, got: %v", test.expect, nPos)
 			}
 			if iterations > maxIterations {
-				t.Fatalf("expected < %v iterations, got: %v", maxIterations, iterations)
+				t.Errorf("expected < %v iterations, got: %v", maxIterations, iterations)
 			}
 		})
 	}
