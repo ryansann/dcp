@@ -41,15 +41,31 @@ func TestFindItinerary(t *testing.T) {
 			start:  "A",
 			expect: []string{"A", "B", "C", "A", "C"}, // not []string{"A", "C", "A", "B", "C"}
 		},
+		{
+			flights: []flight{
+				{"A", "B"},
+				{"B", "A"},
+				{"A", "B"},
+				{"B", "A"},
+				{"A", "B"},
+				{"B", "A"},
+				{"A", "B"},
+			},
+			start:  "A",
+			expect: []string{"A", "B", "A", "B", "A", "B", "A", "B"},
+		},
 	}
 
 	for _, test := range tests {
 		t.Run("", func(t *testing.T) {
 			t.Logf("flights: %v, start: %v", test.flights, test.start)
+
 			itinerary := findItinerary(test.flights, test.start)
 			if !reflect.DeepEqual(itinerary, test.expect) {
 				t.Fatalf("expected: %v, got: %v", test.expect, itinerary)
 			}
+
+			t.Logf("got: %v", itinerary)
 		})
 	}
 }

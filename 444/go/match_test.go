@@ -39,11 +39,14 @@ func TestMatch(t *testing.T) {
 		t.Run(fmt.Sprintf("n=%s|k=%s", test.n, test.k), func(t *testing.T) {
 			maxIterations := len([]rune(test.n)) * len([]rune(test.k))
 			t.Logf("maxIterations: %v", maxIterations)
+
 			nPos, iterations := match(test.n, test.k)
 			t.Logf("nPos: %v, iterations: %v", nPos, iterations)
+
 			if nPos != test.expect {
 				t.Errorf("expected: %v, got: %v", test.expect, nPos)
 			}
+
 			if iterations > maxIterations {
 				t.Errorf("expected < %v iterations, got: %v", maxIterations, iterations)
 			}
