@@ -1,4 +1,4 @@
-# Daily Coding Problem: Problem #446 [Medium]
+# Daily Coding Problem: Problem #446 [Hard]
 
 This problem was asked by Indeed.
 

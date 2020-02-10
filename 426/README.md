@@ -1,4 +1,4 @@
-# Daily Coding Problem: Problem #426 [Easy]
+# Daily Coding Problem: Problem #426 [Medium]
 
 This problem was asked by Facebook.
 

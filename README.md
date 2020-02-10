@@ -5,13 +5,17 @@
 ### Easy
 
 - [Transitive Closure](423)
-- [Binary Tree Min Level Sum](426)
 - [BST Floor & Ceiling](434)
 
 ### Medium
 
+- [Binary Tree Min Level Sum](426)
 - [Shortest Substring in Set](437)
+
+### Hard
+
 - [Power of 4](446)
+- [Efficient String Match](444)
 
 ## Requirements
 
