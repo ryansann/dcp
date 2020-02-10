@@ -9,7 +9,7 @@ type flightGraph map[string][]string
 func findItinerary(flights []flight, start string) []string {
 	g := createFlightGraph(flights)
 
-	// find path from start using all flights
+	// find path from start
 	q := []string{start}
 	var itinerary []string
 	for len(q) > 0 {
@@ -18,7 +18,7 @@ func findItinerary(flights []flight, start string) []string {
 		q = q[1:]
 		itinerary = append(itinerary, cur)
 
-		// add neighbors to queue
+		// add lexicographically lowest to q
 		if len(g[cur]) != 0 {
 			next := g[cur][0]
 			g[cur] = g[cur][1:]
