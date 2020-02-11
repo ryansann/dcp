@@ -47,6 +47,7 @@ func TestStack(t *testing.T) {
 	}
 }
 
+// you're a queueT
 type queueT struct {
 	enqueue []interface{}
 	expect  []interface{}
