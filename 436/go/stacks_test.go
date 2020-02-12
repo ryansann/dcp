@@ -220,6 +220,33 @@ func TestMultiStacker(t *testing.T) {
 				},
 			},
 		},
+		{
+			count: 5,
+			ops: []op{
+				{
+					typ:       push, // n out of bounds
+					n:         5,
+					value:     1,
+					expectErr: true,
+				},
+				{
+					typ:       pop, // n out of bounds
+					n:         5,
+					expectErr: true,
+				},
+				{
+					typ:       push, // n out of bounds
+					n:         6,
+					value:     1,
+					expectErr: true,
+				},
+				{
+					typ:       pop, // n out of bounds
+					n:         6,
+					expectErr: true,
+				},
+			},
+		},
 	}
 
 	for _, test := range tests {
