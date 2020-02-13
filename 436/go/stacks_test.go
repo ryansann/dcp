@@ -256,8 +256,7 @@ func TestMultiStacker(t *testing.T) {
 				t.Fatalf("could not create multistacker: %v", err)
 			}
 
-			var opCount int
-			for _, operation := range test.ops {
+			for opCount, operation := range test.ops {
 				stmt := fmt.Sprintf("operation %v: %s", opCount, opcodeNames[operation.typ])
 				switch operation.typ {
 				case push:
