@@ -76,3 +76,36 @@ func check(rs []rune, stk stack) bool {
 		return false // invalid rune
 	}
 }
+
+// isBalancedGreedy tracks the possible low and high balanced for parens
+func isBalancedGreedy(s string) bool {
+	low, high := 0, 0
+	for _, r := range s {
+		if r == lparen {
+			low++
+		} else {
+			low--
+		}
+
+		if r != rparen {
+			high++
+		} else {
+			high--
+		}
+
+		if high < 0 {
+			break
+		}
+
+		low = max(low, 0)
+	}
+
+	return low == 0
+}
+
+func max(i, j int) int {
+	if i > j {
+		return i
+	}
+	return j
+}

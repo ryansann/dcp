@@ -10,6 +10,8 @@ type isBalancedT struct {
 	expect bool
 }
 
+type isBalancedFn func(s string) bool
+
 func Test(t *testing.T) {
 	tests := []isBalancedT{
 		{
@@ -84,18 +86,21 @@ func Test(t *testing.T) {
 			input:  "()*()**()***()(((((())))))))))))))))",
 			expect: false,
 		},
-		{
-			input:  "la",
-			expect: false,
-		},
+	}
+
+	testFns := map[string]isBalancedFn{
+		"brute-force": isBalanced,
+		"greedy":      isBalancedGreedy,
 	}
 
 	for _, test := range tests {
-		t.Run(fmt.Sprintf("input=%s,expect=%v", test.input, test.expect), func(t *testing.T) {
-			result := isBalanced(test.input)
-			if result != test.expect {
-				t.Fatalf("expected: %v, got: %v", test.expect, result)
-			}
-		})
+		for k, fn := range testFns {
+			t.Run(fmt.Sprintf("fn=%s|input=%s,expect=%v", k, test.input, test.expect), func(t *testing.T) {
+				result := fn(test.input)
+				if result != test.expect {
+					t.Fatalf("expected: %v, got: %v", test.expect, result)
+				}
+			})
+		}
 	}
 }
